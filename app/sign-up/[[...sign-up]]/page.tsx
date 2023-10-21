@@ -1,7 +1,15 @@
 import { SignUp } from '@clerk/nextjs'
 
 function SignUpPage() {
-  return <SignUp afterSignInUrl="/new-user" redirectUrl="/new-user" />
+  return (
+    <SignUp
+      path="/sign-up"
+      routing="path"
+      signInUrl="/sign-in"
+      redirectUrl="/new-user"
+      afterSignUpUrl="/new-user"
+    />
+  )
 }
 
 export default SignUpPage
