@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 function JournalPage() {
-  return <div>JournalPage</div>
+  return <div>Journal Page</div>
 }
 
 export default JournalPage
