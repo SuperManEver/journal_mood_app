@@ -24,7 +24,9 @@ const getEntry = async (id: string) => {
 async function EntryPage({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id)
 
-  return <div>{entry && <Editor entry={entry} />}</div>
+  return (
+    <div className="h-full w-full">{entry && <Editor entry={entry} />}</div>
+  )
 }
 
 export default EntryPage
