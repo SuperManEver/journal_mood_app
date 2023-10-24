@@ -1,4 +1,5 @@
 import { getUserFromClerkID } from '@/utils/auth'
+import { update } from '@/utils/actions'
 import { prisma } from '@/utils/db'
 import { NextResponse } from 'next/server'
 
@@ -17,9 +18,7 @@ export const POST = async (request: Request) => {
     },
   })
 
-  // update(['/journal'])
-
-  console.log(entry)
+  update(['/journal'])
 
   return NextResponse.json({ data: entry })
 }
