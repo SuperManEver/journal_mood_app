@@ -1,7 +1,9 @@
 const createURL = (path: string): string => window.location.origin + path
 
+const ENTITY_PATH = 'journal'
+
 export const newEntry = async () => {
-  const url = createURL('/api/journal')
+  const url = createURL(`/api/${ENTITY_PATH}`)
 
   const params = {
     method: 'POST',
@@ -19,7 +21,7 @@ export const newEntry = async () => {
 }
 
 export const deleteEntry = async (id: string) => {
-  const url = createURL(`/api/entry/${id}`)
+  const url = createURL(`/api/${ENTITY_PATH}/${id}`)
   const params = {
     method: 'DELETE',
   }
@@ -34,8 +36,8 @@ export const deleteEntry = async (id: string) => {
   }
 }
 
-export const updateEntry = async (id: string, updates: unknown) => {
-  const url = createURL(`/api/entry/${id}`)
+export const updateEntry = async (id: string, updates: { content: string }) => {
+  const url = createURL(`/api/${ENTITY_PATH}/${id}`)
   const params = {
     method: 'PATCH',
     body: JSON.stringify({ updates }),

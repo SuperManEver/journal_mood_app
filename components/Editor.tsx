@@ -47,7 +47,7 @@ const Editor = ({ entry }: IProps) => {
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full h-full text-xl p-8"
+          className="w-full h-full text-xl p-8 outline-none"
         />
       </div>
       <div className="border-l border-black/5">
