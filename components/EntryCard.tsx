@@ -1,7 +1,7 @@
 import { JournalEntry, EntryAnalysis } from '@prisma/client'
 
 interface IProps {
-  entry: JournalEntry & { analysis?: EntryAnalysis }
+  entry: JournalEntry & { analysis: EntryAnalysis | null }
 }
 
 const EntryCard = ({ entry }: IProps) => {
