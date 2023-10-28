@@ -60,6 +60,11 @@ const Editor = ({ entry }: IProps) => {
         <div>
           <ul role="list" className="divide-y divide-gray-200">
             <li className="py-4 px-8 flex items-center justify-between">
+              <div className="text-xl font-semibold w-1/3">Summary</div>
+              <div className="text-xl">{currentEntry.analysis?.summary}</div>
+            </li>
+
+            <li className="py-4 px-8 flex items-center justify-between">
               <div className="text-xl font-semibold w-1/3">Subject</div>
               <div className="text-xl">{currentEntry.analysis?.subject}</div>
             </li>

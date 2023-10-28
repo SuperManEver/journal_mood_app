@@ -1,4 +1,5 @@
 import { getUserFromClerkID } from '@/utils/auth'
+import { analyzeEntry } from '@/utils/ai'
 import { prisma } from '@/utils/db'
 import { update } from '@/utils/actions'
 import { NextResponse } from 'next/server'
@@ -24,20 +25,29 @@ export const PATCH = async (request: Request, { params }: IOptions) => {
     data: updates,
   })
 
-  // const analysis = await analyzeEntry(entry)
-  // const savedAnalysis = await prisma.entryAnalysis.upsert({
-  //   where: {
-  //     entryId: entry.id,
-  //   },
-  //   update: { ...analysis },
-  //   create: {
-  //     entryId: entry.id,
-  //     userId: user.id,
-  //     ...analysis,
-  //   },
-  // })
+  // call to LLM API
+  const analysis = await analyzeEntry(entry)
+
+  const savedAnalysis =
+    analysis &&
+    (await prisma.entryAnalysis.upsert({
+      where: {
+        entryId: entry.id,
+      },
+      update: { ...analysis },
+      create: {
+        entryId: entry.id,
+        userId: user.id,
+        ...analysis,
+        sentimentScore: 0.2,
+      },
+    }))
 
   update(['/journal'])
 
-  return NextResponse.json({ data: { ...entry } })
+  const responseData = {
+    data: { ...entry, analysis: savedAnalysis ? savedAnalysis : null },
+  }
+
+  return NextResponse.json(responseData)
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { getUserFromClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
+import { analyzeEntry } from '@/utils/ai'
 
 import EntryCard from '@/components/EntryCard'
 import NewEntry from '@/components/NewEntry'
@@ -19,6 +20,8 @@ const getEntries = async () => {
       analysis: true,
     },
   })
+
+  // const result = await analyzeEntry(data[0])
 
   return data
 }
