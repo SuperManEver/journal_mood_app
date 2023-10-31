@@ -43,6 +43,7 @@ export const PATCH = async (request: Request, { params }: IOptions) => {
       },
     }))
 
+  // This is very important. It's updates the cache so that I see changes on frontend
   update(['/journal'])
 
   const responseData = {
