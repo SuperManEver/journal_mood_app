@@ -16,16 +16,19 @@ const Question = () => {
     [setQuestion]
   )
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
+  const handleSubmit = useCallback(
+    async (evt: React.FormEvent) => {
+      evt.preventDefault()
+      setLoading(true)
 
-    const { data } = await askQuestion(question)
+      const { data } = await askQuestion(question)
 
-    setAnswer(data)
-    setLoading(false)
-    setQuestion('')
-  }
+      setAnswer(data)
+      setLoading(false)
+      setQuestion('')
+    },
+    [question, setLoading, setAnswer, setQuestion]
+  )
 
   return (
     <div>
