@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { askQuestion } from '@/utils/api'
 import { useState } from 'react'
 
@@ -7,6 +8,13 @@ const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  const handleQuestionChange = useCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => {
+      setQuestion(evt.target.value)
+    },
+    [setQuestion]
+  )
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -25,7 +33,7 @@ const Question = () => {
         <input
           type="text"
           value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          onChange={handleQuestionChange}
           className="border border-gray-300 rounded-md p-2 text-lg"
           disabled={loading}
           placeholder="Ask a question..."

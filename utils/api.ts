@@ -55,6 +55,7 @@ export const updateEntry = async (id: string, updates: { content: string }) => {
 
 export const askQuestion = async (question: string) => {
   const url = createURL(`/api/question`)
+
   const params = {
     method: 'POST',
     body: JSON.stringify({ question }),
